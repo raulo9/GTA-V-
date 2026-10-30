@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis | GTA V</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="header">
+    <div class="contenedor header__inner">
+      <a href="index.html" class="logo">
+        <img src="img/gtV.png" alt="Logo GTA V">
+      </a>
+      
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span><span></span><span></span>
+      </label>
+      
+      <nav class="nav">
+        <ul class="nav__lista">
+          <li><a href="index.html" class="nav__enlace">El Proyecto</a></li>
+          <li><a href="galeria.html" class="nav__enlace">Nueva Interfaz</a></li>
+          <li><a href="analisis.html" class="nav__enlace nav__enlace--activo">Análisis</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor seccion">
+    <h1 class="titulo-principal">Memoria de Decisiones Responsive</h1>
+
+    <div class="analisis-bloque">
+      <h2 class="analisis-subtitulo">Interfaz de Partida</h2>
+      <p class="analisis-texto">El proyecto se basa en una serie de capturas estáticas que rediseñan el HUD de Grand Theft Auto V. La vía elegida es un <strong>boceto propio a partir de imágenes referenciadas</strong> del menú del juego. El reto era coger esas imágenes apaisadas pensadas para monitor y que se vieran bien en cualquier dispositivo.</p>
+    </div>
+
+    <div class="tabla-contenedor">
+      <table class="tabla-analisis">
+        <thead>
+          <tr>
+            <th>Comportamiento</th>
+            <th>Móvil (&lt; 600px)</th>
+            <th>Tableta (600px - 1024px)</th>
+            <th>Ordenador (&gt; 1024px)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Navegación (Header)</strong></td>
+            <td>Menú hamburguesa que despliega los enlaces en vertical hacia abajo.</td>
+            <td>Igual que en móvil, manteniendo la maquetación limpia en vertical.</td>
+            <td>El menú hamburguesa desaparece. Los enlaces se alinean en horizontal usando Flexbox.</td>
+          </tr>
+          <tr>
+            <td><strong>Galería (Grid)</strong></td>
+            <td>Las tarjetas se apilan en 1 sola columna ocupando el ancho disponible.</td>
+            <td>La rejilla pasa a 2 columnas para aprovechar el espacio extra.</td>
+            <td>Se divide en 3 columnas completas.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="analisis-subtitulo">5 Decisiones Responsive</h2>
+  <ul class="lista-decisiones">
+    <li><strong>1. Enfoque Mobile First:</strong> El diseño estático original se rompía en móviles y aparecía un scroll horizontal muy molesto. Lo arreglé haciendo primero el CSS para móvil y luego usé @media (min-width) para ir adaptándolo a pantallas más grandes. Además, probé la web directamente en mi móvil para asegurarme de que el menú hamburguesa respondiera bien al tacto.</li>
+    <li><strong>2. Imágenes que no se salen de su sitio:</strong> Como las fotos del juego original son grandes, se salían de la pantalla en dispositivos pequeños. La solución más limpia fue ponerle max-width: 100% y height: auto a la etiqueta img general en el CSS. Así las imágenes se encogen solas y no desbordan su contenedor.</li>
+    <li><strong>3. Rejilla con CSS Grid (sin medidas fijas):</strong> En la galería, si ponía anchos en píxeles, las fotos no cabían en pantallas estrechas. Usar CSS Grid me facilitó mucho la vida porque solo tuve que cambiar grid-template-columns de 1fr (en móvil) a 1fr 1fr (en tablet). Al usar fracciones, el diseño se ajusta solo y no hay que calcular nada.</li>
+    <li><strong>4. Menú hamburguesa solo con CSS:</strong> Un menú de PC normal es inmanejable en móvil. He usado el Checkbox Hack. Básicamente, oculto el menú con display: none y uso el selector en el CSS para que, al tocar el icono de las tres rayitas, el menú pase a display: block y se despliegue.</li>
+    <li><strong>5. Menú de ordenador fiel al juego</strong>: En el móvil puse la marca amarilla de la página activa a la izquierda (border-left) porque quedaba mejor, pero en el menú del juego en consola esa línea va por debajo. Para dejarlo exacto, a partir de los 1024px quité ese borde izquierdo (border-left: none) y le puse un border-bottom: 3px solid #f2c035.</li>
+</ul>
+  </main>
+</body>
+</html>

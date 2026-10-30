@@ -1,0 +1,310 @@
+/* Importa la fuente Oswald desde Google Fonts, elegida porque es casi idéntica a la tipografía de los menús reales de GTA V. */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap');
+
+/* Resetea los valores por defecto del navegador para que los márgenes internos (padding) no sumen ancho extra y descuadren la web. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Configura el comportamiento general: fuente limpia para textos largos, color de texto claro y un fondo oscuro con un degradado sutil en el centro. */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #050505;
+  background-image: radial-gradient(circle at 50% 0%, #1a1c23 0%, #050505 80%);
+  color: #dddddd;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Quita el subrayado feo de los enlaces y hace que hereden el color del texto que los rodea. */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Hace que todas las imágenes sean responsivas, impidiendo que desborden su caja pero manteniendo sus proporciones. */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Crea una caja central invisible que limita el ancho de la web a 1200px para que no se estire demasiado en pantallas gigantes. */
+.contenedor {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Diseña la barra de navegación: la hace semitransparente, le pone una sombra y la fija arriba (sticky) al hacer scroll. */
+.header {
+  background-color: rgba(15, 15, 15, 0.95);
+  border-bottom: 2px solid #2a2a2a;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Usa Flexbox para alinear el logo a la izquierda y el botón del menú a la derecha en la misma línea. */
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+}
+
+/* Prepara el contenedor del logo y le da un efecto de latido y un brillo amarillo al pasar el ratón. */
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 0 5px rgba(242, 192, 53, 0.3));
+  transition: transform 0.3s ease;
+}
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+/* Oculta el checkbox real del HTML, ya que para abrir el menú usaremos su "label" vinculado. */
+.nav-toggle {
+  display: none;
+}
+
+/* Da forma al botón del menú hamburguesa interactivo, poniéndole un fondo oscuro que cambia a amarillo al tocarlo. */
+.nav-toggle-label {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #1a1c23;
+  border: 1px solid #333;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+.nav-toggle-label:hover {
+  background-color: #f2c035;
+}
+
+/* Dibuja las tres rayitas horizontales que forman el icono de hamburguesa. */
+.nav-toggle-label span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #ffffff;
+  margin-bottom: 4px;
+  transition: background-color 0.2s;
+}
+.nav-toggle-label:hover span {
+  background-color: #000000;
+}
+
+/* Oculta el menú desplegable por defecto (pensando primero en móviles). */
+.nav {
+  display: none;
+  width: 100%;
+  background-color: rgba(15, 15, 15, 0.98);
+}
+.nav__lista {
+  list-style: none;
+}
+
+/* Estiliza los enlaces del menú usando la fuente Rockstar, mayúsculas y bordes separadores. */
+.nav__enlace {
+  display: block;
+  padding: 15px 5%;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #aaaaaa;
+  border-bottom: 1px solid #222222;
+  transition: all 0.3s ease;
+}
+
+/* "Checkbox Hack": Le dice a CSS que cuando el input oculto esté marcado, muestre el menú hermano. */
+.nav-toggle:checked ~ .nav {
+  display: block;
+}
+
+/* Resalta el enlace activo o al que pasamos el ratón añadiendo un borde amarillo a la izquierda. */
+.nav__enlace--activo,
+.nav__enlace:hover {
+  color: #ffffff;
+  background-color: rgba(242, 192, 53, 0.1);
+  border-left: 4px solid #f2c035;
+  padding-left: calc(5% + 10px);
+}
+
+/* Da un margen vertical genérico para separar de forma limpia las diferentes secciones de la web. */
+.seccion {
+  padding: 50px 0;
+}
+
+/* Define el área principal (Hero) con el texto centrado y un degradado que funde la caja con el fondo general. */
+.hero {
+  text-align: center;
+  padding: 60px 0;
+  border-bottom: 1px solid #222222;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5));
+}
+
+/* Aplica la tipografía de los juegos de Rockstar a todos los títulos importantes, con una sombra negra para dar volumen. */
+.hero h1, .titulo-principal, .analisis-subtitulo {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+}
+
+/* Ajusta tamaños y espaciados de los textos descriptivos para que no se peguen a los bordes. */
+.hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+.hero p { color: #cccccc; font-size: 1.1rem; margin-bottom: 30px; max-width: 600px; margin-inline: auto; }
+.titulo-principal { text-align: center; font-size: 2.2rem; margin-bottom: 40px; }
+
+/* Inicia CSS Grid para la galería. Empieza con 1 sola columna por defecto (Mobile First). */
+.rejilla-galeria {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* Diseña las tarjetas de las imágenes y crea un efecto de "levitación" y cambio de color al pasar el cursor. */
+.tarjeta-imagen {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.tarjeta-imagen:hover {
+  transform: translateY(-8px);
+  border-color: #f2c035;
+  box-shadow: 0 15px 30px rgba(242, 192, 53, 0.15);
+}
+
+/* Realiza un zoom muy suave a la fotografía del interior de la tarjeta cuando hacemos hover en ella. */
+.tarjeta-imagen img {
+  border-bottom: 2px solid #222;
+  transition: transform 0.5s ease;
+}
+.tarjeta-imagen:hover img {
+  transform: scale(1.03);
+}
+
+/* Da formato a los textos explicativos de las fotos, protegiéndolos para que la foto no los tape al hacer zoom. */
+.tarjeta-imagen__info {
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+  background-color: #111;
+}
+.tarjeta-imagen__info h2 {
+  font-family: 'Oswald', sans-serif;
+  color: #f2c035;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.tarjeta-imagen__info p {
+  color: #bbbbbb;
+  font-size: 0.95rem;
+}
+
+/* Estilos de la página de Análisis: cajas de texto con un borde lateral amarillo para enmarcar las explicaciones. */
+.analisis-bloque {
+  margin-bottom: 40px;
+  background-color: rgba(20, 21, 24, 0.6);
+  padding: 20px;
+  border-left: 4px solid #f2c035;
+  border-radius: 0 8px 8px 0;
+}
+.analisis-subtitulo { margin-top: 10px; margin-bottom: 15px; color: #f2c035; }
+.analisis-texto { color: #cccccc; }
+
+/* Diseña la tabla de la memoria y la encierra en un contenedor con "overflow" para permitir scroll en móviles pequeños. */
+.tabla-contenedor {
+  overflow-x: auto; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+.tabla-analisis {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabla-analisis th, .tabla-analisis td {
+  border: 1px solid #333333;
+  padding: 15px;
+  text-align: left;
+}
+.tabla-analisis th {
+  background-color: #f2c035;
+  color: #000000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.tabla-analisis td {
+  background-color: #111;
+  color: #cccccc;
+}
+
+/* Formatea la lista de decisiones del análisis con viñetas limpias y destaca palabras clave en blanco puro. */
+.lista-decisiones { color: #cccccc; margin-left: 20px; line-height: 1.8; }
+.lista-decisiones li { margin-bottom: 15px; padding-left: 10px; }
+.lista-decisiones strong { color: #ffffff; }
+
+/* A partir de 600px (Tabletas): Cambia el Layout de la galería para que quepan dos imágenes por fila. */
+@media (min-width: 600px) {
+  .rejilla-galeria {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* A partir de 1024px (Ordenadores): Pasa la galería a tres columnas y transforma todo el menú hamburguesa en un menú de cabecera clásico. */
+@media (min-width: 1024px) {
+  .rejilla-galeria {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* Oculta el icono de hamburguesa, ya que en ordenador el menú siempre es visible. */
+  .nav-toggle-label {
+    display: none;
+  }
+  
+  /* El menú deja de ser desplegable vertical y pasa a usar Flexbox para estar en línea. */
+  .nav {
+    display: block;
+    width: auto;
+    background-color: transparent;
+  }
+  .nav__lista {
+    display: flex;
+  }
+  
+  /* Quita el resaltado lateral de móvil y prepara el enlace para la barra inferior. */
+  .nav__enlace {
+    border-bottom: 3px solid transparent;
+    border-left: none;
+    padding: 25px 20px;
+  }
+  
+  /* El enlace activo (o en hover) ahora muestra un borde inferior grueso color amarillo, imitando las pestañas de consola. */
+  .nav__enlace--activo,
+  .nav__enlace:hover {
+    border-left: none; 
+    background-color: transparent; 
+    border-bottom: 4px solid #f2c035;
+    padding-left: 20px;
+    color: #f2c035; 
+  }
+}
