@@ -263,6 +263,16 @@ img {
 .lista-decisiones li { margin-bottom: 15px; padding-left: 10px; }
 .lista-decisiones strong { color: #ffffff; }
 
+/* Da formato al pie de página centrando el texto, reduciendo su tamaño y color para quitarle jerarquía, y separándolo del contenido principal con márgenes y una línea. */
+.footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid #222222;
+  margin-top: 40px;
+  color: #888888; 
+  font-size: 0.9rem;
+}
+
 /* A partir de 600px (Tabletas): Cambia el Layout de la galería para que quepan dos imágenes por fila. */
 @media (min-width: 600px) {
   .rejilla-galeria {
