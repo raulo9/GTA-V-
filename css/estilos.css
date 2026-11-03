@@ -18,7 +18,7 @@ body {
   min-height: 100vh;
 }
 
-/* Quita el subrayado feo de los enlaces y hace que hereden el color del texto que los rodea. */
+/* Quita el subrayado de los enlaces y hace que hereden el color del texto que los rodea. */
 a {
   text-decoration: none;
   color: inherit;
@@ -102,12 +102,18 @@ img {
   background-color: #000000;
 }
 
-/* Oculta el menú desplegable por defecto (pensando primero en móviles). */
+/* Oculta el menú por defecto y lo posiciona absoluto para que no rompa el Flexbox del header en móvil. */
 .nav {
   display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
   width: 100%;
   background-color: rgba(15, 15, 15, 0.98);
+  border-bottom: 2px solid #2a2a2a;
+  box-shadow: 0 15px 20px rgba(0,0,0,0.8);
 }
+
 .nav__lista {
   list-style: none;
 }
@@ -291,12 +297,16 @@ img {
     display: none;
   }
   
-  /* El menú deja de ser desplegable vertical y pasa a usar Flexbox para estar en línea. */
+ /* El menú deja de ser desplegable vertical, recupera su posición estática y pasa a usar Flexbox para estar en línea. */
   .nav {
     display: block;
+    position: static; /* Devuelve el menú a la estructura normal (anulando el absolute del móvil) */
     width: auto;
     background-color: transparent;
+    border-bottom: none; /* Quita el borde inferior del menú móvil */
+    box-shadow: none; /* Quita la sombra del menú móvil */
   }
+
   .nav__lista {
     display: flex;
   }
